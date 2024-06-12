@@ -1,0 +1,36 @@
+.center {
+    margin: auto;
+    width: max-content;
+}
+
+.recipeTable {
+    background-color: white;
+    border: 4px solid black;
+
+    .recipeRow {
+        background-color: lightblue;
+    }
+
+    td {
+        font-size: x-large;
+
+    }
+
+}
+
+.textAlignLeft {
+    text-align: left;
+}
+
+.textAlignCenter {
+    text-align: center;
+}
+
+.customGrid {
+    background-color: white;
+    border-radius: 15%;
+    border: 2px solid black;
+    padding: 50px;
+    min-height: max-content;
+
+}
