@@ -31,13 +31,7 @@ function App() {
             <div style={{ "marginTop": "50px" }}></div>
 
             <h1 className="center"> MY RECIPE BOOK </h1>
-            <p>
-              {array.map((members, index) => (
-                <span key={index} >{members}</span>
 
-              ))}
-
-            </p>
             <div className="center">
               <SearchBar></SearchBar>
             </div>

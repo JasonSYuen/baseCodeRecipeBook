@@ -8,7 +8,7 @@ function SearchBar() {
     const [rows, setRows] = useState([])
     console.log(input)
     const fetchAPI = async () => {
-        const response = await axios.get("http://127.0.0.1:5000/fakedata/" + { input })
+        const response = await axios.get("https://householdrecipebook.pythonanywhere.com/fakedata/" + { input })
         console.log(response.data)
         setRows(response.data)
     }
