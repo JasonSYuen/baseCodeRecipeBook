@@ -25,7 +25,7 @@ function IndvRecipePage() {
     const { id } = useParams()
     const [input, setInput] = useState({})
     const fetchAPI = async () => {
-        const response = await axios.get('https://householdrecipebook.pythonanywhere.com/recipe/${id}')
+        const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/recipe/${id}`)
         console.log(response.data)
         console.log(response.data.name)
         setInput(response.data)
