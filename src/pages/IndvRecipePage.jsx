@@ -28,6 +28,7 @@ function IndvRecipePage() {
         const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/recipe/${id}`)
         console.log(response.data)
         console.log(response.data.name)
+        console.log({ id })
         setInput(response.data)
     }
     useEffect(() => {
