@@ -9,7 +9,13 @@ function SearchBar() {
     console.log(input)
     useEffect(() => {
         const fetchAPI = async () => {
-            const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata/${input}`)
+            if (!{ input }) {    //if input is empty string
+                const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata`)
+            }
+            else {
+                const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata/${input}`)
+            }
+
             console.log(response.data)
             setRows(response.data)
         }
