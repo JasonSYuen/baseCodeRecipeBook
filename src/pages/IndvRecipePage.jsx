@@ -82,14 +82,19 @@ function IndvRecipePage() {
                 <Stack
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 2, sm: 4, md: 6 }}
+                    sx={{
+                        maxWidth: 1000, // Sets the maximum width to 500px
+                        minWidth: 800,
+                        //width: '100%'
+                    }}
                 >
-                    <Item><div className=''>
+                    <Item sx={{ width: '100%' }}><div className=''>
                         <h2> Ingredients</h2>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Ingredient</td>
-                                    <td>Quantity</td>
+                                    <th><b>Ingredient</b></th>
+                                    <th><b>Quantity</b></th>
                                 </tr>
                                 {input.ingredients?.map((ingredient, index) => (
                                     <tr key={index}>
@@ -100,7 +105,7 @@ function IndvRecipePage() {
                             </tbody>
                         </table>
                     </div></Item>
-                    <Item><div className=''>
+                    <Item sx={{ width: '100%' }}><div className=''>
                         <h2> Instructions: </h2>
                         <p>{input.instructions}</p>
                     </div></Item>
