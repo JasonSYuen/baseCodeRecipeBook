@@ -4,6 +4,8 @@ import axios from 'axios'
 import SearchBar from './components/searchBar'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import IndvRecipePage from './pages/IndvRecipePage'
+import AdvSearch from './components/AdvSearch'
+import SpecificIngredients from './components/SpecificIngredients'
 
 
 function App() {
@@ -20,6 +22,19 @@ function App() {
     //fetchAPI();
   }, [])
 
+  const [searchThisProtein, setSearchThisProtein] = useState("")
+  function setProtein(asc_or_desc) {
+    setSearchThisProtein(asc_or_desc)
+  }
+  const [searchThisCarb, setSearchThisCarb] = useState("")
+  function setCarb(asc_or_desc) {
+    setSearchThisCarb(asc_or_desc)
+  }
+  const [searchThisRating, setSearchThisRating] = useState("")
+  function setRating(asc_or_desc) {
+    setSearchThisRating(asc_or_desc)
+  }
+
 
 
 
@@ -33,6 +48,14 @@ function App() {
             <h1 className="center"> MY RECIPE BOOK </h1>
 
             <div className="center">
+              <table>
+                <tr>
+                  <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
+                  <td><AdvSearch set={setCarb} val={searchThisCarb} type={"carbohydrate"}></AdvSearch></td>
+                  <td><AdvSearch set={setRating} val={searchThisRating} type={"rating"}></AdvSearch></td>
+                </tr>
+              </table>
+              <SpecificIngredients></SpecificIngredients>
               <SearchBar></SearchBar>
             </div>
 

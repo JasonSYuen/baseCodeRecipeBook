@@ -50,35 +50,6 @@ function IndvRecipePage() {
             {/*<p>{id}</p>*/}
             <div className='center' style={{ "marginTop": "50px" }}>
 
-                {/* <Grid container spacing={20} direction="row" >
-
-                    <Grid item xs={6} >
-                        <div className='customGrid'>
-                            <h2> Ingredients</h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Ingredient</td>
-                                        <td>Quantity</td>
-                                    </tr>
-                                    {input.ingredients?.map((ingredient, index) => (
-                                        <tr key={index}>
-                                            <td>{ingredient}</td>
-                                            <td>{input.quantity[index]} {input.units[index]}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <div className='customGrid'>
-                            <h2> Instructions: </h2>
-                            <p>{input.instructions}</p>
-                        </div>
-                    </Grid>
-                </Grid> */}
-
                 <Stack
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 2, sm: 4, md: 6 }}
