@@ -41,18 +41,21 @@ function IndvRecipePage() {
         let startpoint = 0;
         if (input.instructions) {
             let newArray = []
+            console.log(input.instructions.length)
             for (let index = 0; index < input.instructions.length; index++) {
                 if (index != 0 && (!isNaN(input.instructions[index - 1]) && input.instructions[index] == ".")) {
-                    newArray.push(input.instructions.slice(startpoint, index - 2))
-                    startpoint = index
+                    newArray.push(input.instructions.slice(startpoint, index - 1))
+                    startpoint = index - 1
                 }
             }
             setArray(newArray)
+            for (let i = 0; i < array.length; i++) {
+                console.log("HERE JEOIDNSASADKL")
+                console.log(array[i])
+            }
         }
-        console.log("HERE JEOIDNSASADKL")
-        for (let i = 0; i < array.length; i++) {
-            console.log(array[i])
-        }
+
+
     }, [input])
 
 
@@ -67,7 +70,7 @@ function IndvRecipePage() {
             </Link>
             <h1 className="center"> {input.name} </h1>
             <h3 className="center"> by: {input.author}</h3>
-            <h3 className="center">rating <Rating name="read-only" value={5} readOnly /> </h3>
+            <h3 className="center">rating: <Rating name="read-only" value={5} readOnly /> </h3>
 
             {/*<p>{id}</p>*/}
             <div className='center' style={{ "marginTop": "50px" }}>
@@ -99,13 +102,13 @@ function IndvRecipePage() {
                         </table>
                     </div></Item>
                     <Item sx={{ width: '100%' }}><div className=''>
-                        <h2> Instructions: </h2>
+                        <h2> Instructions </h2>
                         <table>
                             <tbody>
                                 {array.map((instructions, index) => (
 
                                     <tr key={index} className='bottomUnderlined'>
-                                        <td> {instructions}</td>
+                                        <td style={{ "textAlign": "left" }}> {instructions}</td>
                                     </tr>
                                 ))}
                             </tbody>
