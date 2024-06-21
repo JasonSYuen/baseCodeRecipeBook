@@ -84,7 +84,7 @@ function IndvRecipePage() {
                         //width: '100%'
                     }}
                 >
-                    <Item sx={{ width: '100%' }}><div className=''>
+                    <Item sx={{ width: '100%' }}><div className='center'>
                         <h2> Ingredients</h2>
                         <table style={{ "border-collapse": "collapse" }}>
                             <tbody>
@@ -94,8 +94,8 @@ function IndvRecipePage() {
                                 </tr>
                                 {input.ingredients?.map((ingredient, index) => (
                                     <tr key={index} className='bottomUnderlined'>
-                                        <td>{ingredient}</td>
-                                        <td>{input.quantity[index]} {input.units[index]}</td>
+                                        <td style={{ "textAlign": "left" }} >{ingredient}</td>
+                                        <td style={{ "textAlign": "center" }}>{input.quantity[index]} {input.units[index]}</td>
                                     </tr>
                                 ))}
                             </tbody>

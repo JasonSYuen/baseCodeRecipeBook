@@ -30,9 +30,9 @@ function App() {
   function setCarb(asc_or_desc) {
     setSearchThisCarb(asc_or_desc)
   }
-  const [searchThisRating, setSearchThisRating] = useState("")
-  function setRating(asc_or_desc) {
-    setSearchThisRating(asc_or_desc)
+  const [searchThisCookTime, setSearchThisCookTime] = useState("")
+  function setCookTime(asc_or_desc) {
+    setSearchThisCookTime(asc_or_desc)
   }
 
 
@@ -52,7 +52,7 @@ function App() {
                 <tr>
                   <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
                   <td><AdvSearch set={setCarb} val={searchThisCarb} type={"carbohydrate"}></AdvSearch></td>
-                  <td><AdvSearch set={setRating} val={searchThisRating} type={"rating"}></AdvSearch></td>
+                  <td><AdvSearch set={setCookTime} val={searchThisCookTime} type={"cooktime"}></AdvSearch></td>
                 </tr>
               </table>
               <SpecificIngredients></SpecificIngredients>
