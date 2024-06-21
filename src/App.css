@@ -34,3 +34,7 @@
     min-height: max-content;
 
 }
+
+.bottomUnderlined {
+    border-bottom: 2px solid black;
+}

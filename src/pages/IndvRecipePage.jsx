@@ -4,12 +4,11 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import Rating from '@mui/material/Rating';
 
 
 function IndvRecipePage() {
@@ -24,16 +23,38 @@ function IndvRecipePage() {
 
     const { id } = useParams()
     const [input, setInput] = useState({})
+    const [array, setArray] = useState([])
     const fetchAPI = async () => {
         const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/recipe/${id}`)
         console.log(response.data)
         console.log(response.data.name)
         console.log({ id })
         setInput(response.data)
+
+
     }
     useEffect(() => {
         fetchAPI()
     }, [])
+
+    useEffect(() => {
+        let startpoint = 0;
+        if (input.instructions) {
+            let newArray = []
+            for (let index = 0; index < input.instructions.length; index++) {
+                if (index != 0 && (!isNaN(input.instructions[index - 1]) && input.instructions[index] == ".")) {
+                    newArray.push(input.instructions.slice(startpoint, index - 2))
+                    startpoint = index
+                }
+            }
+            setArray(newArray)
+        }
+        console.log("HERE JEOIDNSASADKL")
+        for (let i = 0; i < array.length; i++) {
+            console.log(array[i])
+        }
+    }, [input])
+
 
 
 
@@ -45,8 +66,9 @@ function IndvRecipePage() {
                 <Button variant="contained" >BACK TO RECIPE SEARCH</Button>;
             </Link>
             <h1 className="center"> {input.name} </h1>
-            <h3 className="center"> by: insert author name here</h3>
-            <h3 className="center">rating here </h3>
+            <h3 className="center"> by: {input.author}</h3>
+            <h3 className="center">rating <Rating name="read-only" value={5} readOnly /> </h3>
+
             {/*<p>{id}</p>*/}
             <div className='center' style={{ "marginTop": "50px" }}>
 
@@ -61,14 +83,14 @@ function IndvRecipePage() {
                 >
                     <Item sx={{ width: '100%' }}><div className=''>
                         <h2> Ingredients</h2>
-                        <table>
+                        <table style={{ "border-collapse": "collapse" }}>
                             <tbody>
                                 <tr>
                                     <th><b>Ingredient</b></th>
                                     <th><b>Quantity</b></th>
                                 </tr>
                                 {input.ingredients?.map((ingredient, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className='bottomUnderlined'>
                                         <td>{ingredient}</td>
                                         <td>{input.quantity[index]} {input.units[index]}</td>
                                     </tr>
@@ -78,7 +100,16 @@ function IndvRecipePage() {
                     </div></Item>
                     <Item sx={{ width: '100%' }}><div className=''>
                         <h2> Instructions: </h2>
-                        <p>{input.instructions}</p>
+                        <table>
+                            <tbody>
+                                {array.map((instructions, index) => (
+
+                                    <tr key={index} className='bottomUnderlined'>
+                                        <td> {instructions}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div></Item>
 
                 </Stack>
