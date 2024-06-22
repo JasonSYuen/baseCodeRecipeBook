@@ -4,26 +4,28 @@ import { TextField } from '@mui/material'
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 
-function IngrListSearch({ list, func, refe }) {
+function IngrListSearch({ list, func }) {
 
     const [text, textFieldState] = useState("")
 
-    function addToList() {
-        if (text) {
-            func("add", text)
-            textFieldState("");
+    function addToList(look_or_ignore) {
+        return () => {
+            if (text) {
+                func("add", text, look_or_ignore)
+                textFieldState("");
+            }
         }
     }
 
     return (
         <div>
-            <form>
-                <TextField id="addIngr" value={text} onChange={(event) => { textFieldState(event.target.value) }}></TextField>
-                <ButtonGroup variant="contained" aria-label="Basic button group">
-                    <Button onClick={addToList} >+</Button>
-                    <Button>-</Button>
-                </ButtonGroup>
-            </form>
+
+            <TextField id="addIngr" value={text} onChange={(event) => { textFieldState(event.target.value) }}></TextField>
+
+            <Button onClick={addToList("green")} variant="contained">+</Button>
+            <Button onClick={addToList("red")} variant="contained">-</Button>
+
+
 
             <table className='ingrList'>
                 <tr>
@@ -34,7 +36,7 @@ function IngrListSearch({ list, func, refe }) {
                 <tbody>
                     {list.map((row, index) => (
                         <tr key={index}>
-                            <td>{row}</td>
+                            <td style={{ "backgroundColor": row.look_or_ignore }}>{row.item}</td>
                             <td className='trashIcon'>-</td>
                         </tr>
                     ))}

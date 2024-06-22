@@ -26,9 +26,7 @@ function IndvRecipePage() {
     const [array, setArray] = useState([])
     const fetchAPI = async () => {
         const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/recipe/${id}`)
-        console.log(response.data)
-        console.log(response.data.name)
-        console.log({ id })
+
         setInput(response.data)
 
 
@@ -49,10 +47,6 @@ function IndvRecipePage() {
                 }
             }
             setArray(newArray)
-            for (let i = 0; i < array.length; i++) {
-                console.log("HERE JEOIDNSASADKL")
-                console.log(array[i])
-            }
         }
 
 

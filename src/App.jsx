@@ -12,9 +12,6 @@ import IngrListSearch from './components/IngrListSearch'
 
 
 function App() {
-  const [data, setData] = useState([{}])
-  const [array, setArray] = useState([]);
-
   useEffect(() => {
     document.body.style.backgroundColor = "beige";
   }, [])
@@ -31,17 +28,22 @@ function App() {
   function setCookTime(asc_or_desc) {
     setSearchThisCookTime(asc_or_desc)
   }
-  var x = 0
-  const [searchThisIngredientList, setSearchThisIngredientList] = useState(["testItem"])
-  function setThisIngredientList(add_or_remove, item) {
+
+  const [searchThisIngredientList, setSearchThisIngredientList] = useState([{}])
+
+  function setThisIngredientList(add_or_remove, item, look_or_ignore) {
     if (add_or_remove == "add") {
       let arr = searchThisIngredientList
-      arr.push(item)
+
+      arr.push({ "item": item, "look_or_ignore": look_or_ignore })
       setSearchThisIngredientList(arr)
-      x = x + 1
+      console.log({ "item": item, "look_or_ignore": look_or_ignore })
+
     }
     else {
-      //remove
+      let arr = searchThisIngredientList
+      arr.filter((word) => (word != item))
+      setSearchThisIngredientList(arr)
     }
   }
 
@@ -56,14 +58,16 @@ function App() {
             <SplitPane split="vertical" minSize={50} defaultSize={'50%'}>
               <Pane className='center'>
                 <table>
-                  <tr>
-                    <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
-                    <td><AdvSearch set={setCarb} val={searchThisCarb} type={"carbohydrate"}></AdvSearch></td>
-                    <td><AdvSearch set={setCookTime} val={searchThisCookTime} type={"cooktime"}></AdvSearch></td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
+                      <td><AdvSearch set={setCarb} val={searchThisCarb} type={"carbohydrate"}></AdvSearch></td>
+                      <td><AdvSearch set={setCookTime} val={searchThisCookTime} type={"cooktime"}></AdvSearch></td>
+                    </tr>
+                  </tbody>
                 </table>
                 {/* <SpecificIngredients></SpecificIngredients> */}
-                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} refe={x} ></IngrListSearch>
+                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} ></IngrListSearch>
                 {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
               </Pane>
               <Pane className='center'>

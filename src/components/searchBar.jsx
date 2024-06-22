@@ -16,7 +16,6 @@ function SearchBar() {
             else {
                 response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata/${input}`)
             }
-            console.log(response.data)
             setRows(response.data)
         }
         const debounceFetchAPI = setTimeout(fetchAPI, 500);
