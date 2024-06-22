@@ -38,3 +38,32 @@
 .bottomUnderlined {
     border-bottom: 2px solid black;
 }
+
+.ingrList {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+        border: 2px solid black;
+
+    }
+
+    td {
+        border-right: 1px solid black;
+        font-size: large;
+        height: 30px;
+
+
+    }
+
+    .trashIcon {
+        width: 20%;
+        text-align: center;
+    }
+
+    .name {
+        width: 80%;
+
+    }
+
+}

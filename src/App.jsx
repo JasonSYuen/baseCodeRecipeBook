@@ -31,13 +31,14 @@ function App() {
   function setCookTime(asc_or_desc) {
     setSearchThisCookTime(asc_or_desc)
   }
-
+  var x = 0
   const [searchThisIngredientList, setSearchThisIngredientList] = useState(["testItem"])
   function setThisIngredientList(add_or_remove, item) {
     if (add_or_remove == "add") {
       let arr = searchThisIngredientList
       arr.push(item)
       setSearchThisIngredientList(arr)
+      x = x + 1
     }
     else {
       //remove
@@ -62,7 +63,7 @@ function App() {
                   </tr>
                 </table>
                 {/* <SpecificIngredients></SpecificIngredients> */}
-                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList}></IngrListSearch>
+                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} refe={x} ></IngrListSearch>
                 {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
               </Pane>
               <Pane className='center'>
