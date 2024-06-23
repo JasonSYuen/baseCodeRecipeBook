@@ -89,6 +89,8 @@ function App() {
       let getRequest = `https://householdrecipebook.pythonanywhere.com/realdata/${searchBarText}/${ingrListInclude}/${ingrListExclude}/${sortProtein}/${sortCarb}/${sortCookTime}`
       const response = await axios.get(getRequest)
       console.log(response)
+      setRows(response.data)
+
 
     }
     const debounceFetchAPI = setTimeout(fetchAPI2, 500);
