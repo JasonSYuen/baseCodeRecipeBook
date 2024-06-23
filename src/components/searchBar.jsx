@@ -3,25 +3,8 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios'
 import recipeTable from './recipeTable';
 
-function SearchBar() {
-    const [input, setInput] = useState("")
-    const [rows, setRows] = useState([])
-    console.log(input)
-    useEffect(() => {
-        const fetchAPI = async () => {
-            let response
-            if (!input) {    //if input is empty string
-                response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata`)
-            }
-            else {
-                response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata/${input}`)
-            }
-            setRows(response.data)
-        }
-        const debounceFetchAPI = setTimeout(fetchAPI, 500);
-        return () => clearTimeout(debounceFetchAPI);
+function SearchBar({ rows, setInput, input }) {
 
-    }, [input]);
 
     return (
         <div>

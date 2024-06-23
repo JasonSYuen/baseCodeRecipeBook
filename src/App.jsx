@@ -47,6 +47,55 @@ function App() {
     }
   }
 
+  const [input, setInput] = useState("")
+  const [rows, setRows] = useState([])
+
+  // useEffect(() => {
+  //   const fetchAPI = async () => {
+  //     let response
+  //     if (!input) {    //if input is empty string
+  //       response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata`)
+  //     }
+  //     else {
+  //       response = await axios.get(`https://householdrecipebook.pythonanywhere.com/fakedata/${input}`)
+  //     }
+  //     setRows(response.data)
+  //   }
+  //   const debounceFetchAPI = setTimeout(fetchAPI, 500);
+  //   return () => clearTimeout(debounceFetchAPI);
+
+  // }, [input]);
+
+  var x
+  useEffect(() => {
+    const fetchAPI2 = async () => {
+
+      let searchBarText = "@" + input
+      let ingrListInclude = "@" + ""
+      let ingrListExclude = "@" + ""
+      let sortProtein = "@" + searchThisProtein
+      let sortCarb = "@" + searchThisCarb
+      let sortCookTime = "@" + searchThisCookTime
+
+
+      for (let i = 0; i < searchThisIngredientList.length; i++) {
+        if (searchThisIngredientList[i].look_or_ignore == 'green') {
+          ingrListInclude += "&" + searchThisIngredientList[i].item
+        }
+        else if (searchThisIngredientList[i].look_or_ignore == 'red') {
+          ingrListExclude += "&" + searchThisIngredientList[i].item
+        }
+      }
+      let getRequest = `https://householdrecipebook.pythonanywhere.com/realdata/${searchBarText}/${ingrListInclude}/${ingrListExclude}/${sortProtein}/${sortCarb}/${sortCookTime}`
+      const response = await axios.get(getRequest)
+      console.log(response)
+
+    }
+    const debounceFetchAPI = setTimeout(fetchAPI2, 500);
+    return () => clearTimeout(debounceFetchAPI);
+
+  }, [input, searchThisIngredientList, searchThisCarb, searchThisCookTime, searchThisProtein]);
+
 
   return (
     <HashRouter>
@@ -71,7 +120,7 @@ function App() {
                 {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
               </Pane>
               <Pane className='center'>
-                <SearchBar></SearchBar>
+                <SearchBar rows={rows} setInput={setInput} input={input}></SearchBar>
               </Pane>
             </SplitPane>
           </div >
