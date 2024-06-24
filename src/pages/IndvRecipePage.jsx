@@ -28,6 +28,7 @@ function IndvRecipePage() {
         const response = await axios.get(`https://householdrecipebook.pythonanywhere.com/recipe/${id}`)
 
         setInput(response.data)
+        console.log(response.data)
 
 
     }
@@ -39,7 +40,7 @@ function IndvRecipePage() {
         let startpoint = 0;
         if (input.instructions) {
             let newArray = []
-            console.log(input.instructions.length)
+            console.log("response data length: " + input.instructions.length)
             for (let index = 0; index < input.instructions.length; index++) {
                 if (index != 0 && (!isNaN(input.instructions[index - 1]) && input.instructions[index] == ".")) {
                     newArray.push(input.instructions.slice(startpoint, index - 1))
@@ -80,13 +81,13 @@ function IndvRecipePage() {
                 >
                     <Item sx={{ width: '100%' }}><div className='center'>
                         <h2> Ingredients</h2>
-                        <table style={{ "border-collapse": "collapse" }}>
+                        <table style={{ "borderCollapse": "collapse" }}>
                             <tbody>
                                 <tr>
                                     <th><b>Ingredient</b></th>
                                     <th><b>Quantity</b></th>
                                 </tr>
-                                {input.ingredients?.map((ingredient, index) => (
+                                {(input.ingredients)?.map((ingredient, index) => (
                                     <tr key={index} className='bottomUnderlined'>
                                         <td style={{ "textAlign": "left" }} >{ingredient}</td>
                                         <td style={{ "textAlign": "center" }}>{input.quantity[index]} {input.units[index]}</td>

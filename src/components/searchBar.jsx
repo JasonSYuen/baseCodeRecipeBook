@@ -3,9 +3,7 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios'
 import recipeTable from './recipeTable';
 
-function SearchBar({ rows, setInput, input }) {
-
-
+function SearchBar({ setInput, input }) {
     return (
         <div>
             < TextField id="outlined-basic" label="Search Recipes Here" variant="outlined" value={input}
@@ -13,7 +11,6 @@ function SearchBar({ rows, setInput, input }) {
                     setInput(e.target.value);
                 }} />
             <h2>Recipes: </h2>
-            {recipeTable(rows)}
         </div>
     )
 }

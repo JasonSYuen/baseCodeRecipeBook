@@ -22,9 +22,9 @@ function AdvSearch({ set, val, type }) {  // set search to asc or descending ord
                     label=""
                     onChange={handleChange}
                 >
-                    <MenuItem value={type + ': none'}>{type + ': unsorted'}</MenuItem>
-                    <MenuItem value={type + ': asc'}>{type + ': ascending order'}</MenuItem>
-                    <MenuItem value={type + ': desc'}>{type + ': descending order'}</MenuItem>
+                    <MenuItem value={''}>{type + ': unsorted'}</MenuItem>
+                    <MenuItem value={'asc'}>{type + ': ascending order'}</MenuItem>
+                    <MenuItem value={'desc'}>{type + ': descending order'}</MenuItem>
                 </Select>
             </FormControl>
         </Box>

@@ -28,11 +28,13 @@ function IngrListSearch({ list, func }) {
 
 
             <table className='ingrList'>
-                <tr>
-                    <th className='name'>Name</th>
+                <tbody>
+                    <tr>
+                        <th className='name'>Name</th>
 
-                    <th className='trashIcon'>trashIcon.png here</th>
-                </tr>
+                        <th className='trashIcon'>trashIcon.png here</th>
+                    </tr>
+                </tbody>
                 <tbody>
                     {list.map((row, index) => (
                         <tr key={index}>

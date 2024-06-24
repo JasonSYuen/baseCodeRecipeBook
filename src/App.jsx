@@ -5,9 +5,8 @@ import SearchBar from './components/searchBar'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import IndvRecipePage from './pages/IndvRecipePage'
 import AdvSearch from './components/AdvSearch'
-import SpecificIngredients from './components/SpecificIngredients'
 import SplitPane, { Pane } from 'react-split-pane'
-
+import RecipeTable from './components/recipeTable'
 import IngrListSearch from './components/IngrListSearch'
 
 
@@ -38,17 +37,19 @@ function App() {
       arr.push({ "item": item, "look_or_ignore": look_or_ignore })
       setSearchThisIngredientList(arr)
       console.log({ "item": item, "look_or_ignore": look_or_ignore })
+      //setSearchThisIngredientList(prevList => [...prevList, { item, look_or_ignore }]);
 
     }
     else {
       let arr = searchThisIngredientList
       arr.filter((word) => (word != item))
       setSearchThisIngredientList(arr)
+      // setSearchThisIngredientList(prevList => prevList.filter(word => word.item !== item))
     }
   }
 
   const [input, setInput] = useState("")
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState([{ "id": 1, "name": "write something", "rating": "4" }])
 
   // useEffect(() => {
   //   const fetchAPI = async () => {
@@ -66,7 +67,7 @@ function App() {
 
   // }, [input]);
 
-  var x
+
   useEffect(() => {
     const fetchAPI2 = async () => {
 
@@ -77,7 +78,6 @@ function App() {
       let sortCarb = "@" + searchThisCarb
       let sortCookTime = "@" + searchThisCookTime
 
-
       for (let i = 0; i < searchThisIngredientList.length; i++) {
         if (searchThisIngredientList[i].look_or_ignore == 'green') {
           ingrListInclude += "&" + searchThisIngredientList[i].item
@@ -86,18 +86,23 @@ function App() {
           ingrListExclude += "&" + searchThisIngredientList[i].item
         }
       }
-      let getRequest = `https://householdrecipebook.pythonanywhere.com/realdata/${searchBarText}/${ingrListInclude}/${ingrListExclude}/${sortProtein}/${sortCarb}/${sortCookTime}`
-      const response = await axios.get(getRequest)
-      console.log(response)
-      setRows(response.data)
-
+      try {
+        let getRequest = `https://householdrecipebook.pythonanywhere.com/realdata/${searchBarText}/${ingrListInclude}/${ingrListExclude}/${sortProtein}/${sortCarb}/${sortCookTime}`
+        const response = await axios.get(getRequest)
+        console.log(response)
+        setRows(response.data)
+      }
+      catch (e) { console.error(e); }
+      console.log(searchBarText + " " + ingrListInclude + " " + ingrListExclude + " " + sortProtein + " " + sortCarb + " " + sortCookTime)
 
     }
     const debounceFetchAPI = setTimeout(fetchAPI2, 500);
+    console.log("request sent to server")
+
     return () => clearTimeout(debounceFetchAPI);
 
-  }, [input, searchThisIngredientList, searchThisCarb, searchThisCookTime, searchThisProtein]);
-
+  }, []);
+  //input, searchThisIngredientList, searchThisCarb, searchThisCookTime, searchThisProtein
 
   return (
     <HashRouter>
@@ -122,7 +127,8 @@ function App() {
                 {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
               </Pane>
               <Pane className='center'>
-                <SearchBar rows={rows} setInput={setInput} input={input}></SearchBar>
+                <SearchBar setInput={setInput} input={input}></SearchBar>
+                <RecipeTable rows={rows} ></RecipeTable>
               </Pane>
             </SplitPane>
           </div >

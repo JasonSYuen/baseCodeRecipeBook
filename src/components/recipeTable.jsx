@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-function recipeTable(rows) {
+function recipeTable({ rows }) {
     //const { id } = useParams()
     return (
         <table className='recipeTable'>
-            <tr className='recipeRow'>
-                <td>Name</td>
-                <td>Rating</td>
-            </tr>
+            <tbody>
+                <tr className='recipeRow'>
+                    <td>Name</td>
+                    <td>Rating</td>
+                </tr>
+            </tbody>
             <tbody >
                 {rows.map((row, index) => {
                     return <tr className='recipeRow' key={index}>
