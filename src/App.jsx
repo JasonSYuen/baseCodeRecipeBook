@@ -96,12 +96,12 @@ function App() {
       console.log(searchBarText + " " + ingrListInclude + " " + ingrListExclude + " " + sortProtein + " " + sortCarb + " " + sortCookTime)
 
     }
-    const debounceFetchAPI = setTimeout(fetchAPI2, 500);
+    const debounceFetchAPI = setTimeout(fetchAPI2, 100);
     console.log("request sent to server")
 
     return () => clearTimeout(debounceFetchAPI);
 
-  }, []);
+  }, [input, searchThisIngredientList, searchThisCarb, searchThisCookTime, searchThisProtein]);
   //input, searchThisIngredientList, searchThisCarb, searchThisCookTime, searchThisProtein
 
   return (
