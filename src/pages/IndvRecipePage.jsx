@@ -68,6 +68,14 @@ function IndvRecipePage() {
             <h3 className="center">rating: <Rating name="read-only" value={5} readOnly /> </h3>
 
             {/*<p>{id}</p>*/}
+            <div>
+                <Item>
+                    <h3> CookTime: {input.TimeToPlate} min | Calories: {input.Calories} | Total Fat: {input.TotalFat}g | Saturated Fat: {input.SaturatedFat}g</h3>
+                    <h3> Sodium: {input.Sodium}mg | Carbohydrates {input.TotalCarb}g | Fiber: {input.Fiber}g | Protein: {input.Protein}g </h3>
+
+                    <h3> </h3>
+                </Item>
+            </div>
             <div className='center' style={{ "marginTop": "50px" }}>
 
                 <Stack

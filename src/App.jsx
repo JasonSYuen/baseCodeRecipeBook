@@ -49,7 +49,7 @@ function App() {
   }
 
   const [input, setInput] = useState("")
-  const [rows, setRows] = useState([{ "id": 1, "name": "write something", "rating": "4" }])
+  const [rows, setRows] = useState([{ "id": 1, "name": "loading", "rating": "4" }])
 
   // useEffect(() => {
   //   const fetchAPI = async () => {
@@ -117,7 +117,7 @@ function App() {
                   <tbody>
                     <tr>
                       <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
-                      <td><AdvSearch set={setCarb} val={searchThisCarb} type={"carbohydrate"}></AdvSearch></td>
+                      <td><AdvSearch set={setCarb} val={searchThisCarb} type={"calories"}></AdvSearch></td>
                       <td><AdvSearch set={setCookTime} val={searchThisCookTime} type={"cooktime"}></AdvSearch></td>
                     </tr>
                   </tbody>
