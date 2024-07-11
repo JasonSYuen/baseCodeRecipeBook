@@ -5,7 +5,7 @@ import SearchBar from './components/searchBar'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import IndvRecipePage from './pages/IndvRecipePage'
 import AdvSearch from './components/AdvSearch'
-import SplitPane, { Pane } from 'react-split-pane'
+import SplitPane, { Pane } from 'react-split-pane-v2'
 import RecipeTable from './components/recipeTable'
 import IngrListSearch from './components/IngrListSearch'
 
@@ -115,22 +115,26 @@ function App() {
             <h1 className="center"> MY RECIPE BOOK </h1>
             <SplitPane split="vertical" minSize={50} defaultSize={'50%'}>
               <Pane className='center'>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
-                      <td><AdvSearch set={setCarb} val={searchThisCarb} type={"calories"}></AdvSearch></td>
-                      <td><AdvSearch set={setCookTime} val={searchThisCookTime} type={"cooktime"}></AdvSearch></td>
-                    </tr>
-                  </tbody>
-                </table>
-                {/* <SpecificIngredients></SpecificIngredients> */}
-                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} ></IngrListSearch>
-                {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
+                <div>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td><AdvSearch set={setProtein} val={searchThisProtein} type={"protein"}></AdvSearch></td>
+                        <td><AdvSearch set={setCarb} val={searchThisCarb} type={"calories"}></AdvSearch></td>
+                        <td><AdvSearch set={setCookTime} val={searchThisCookTime} type={"cooktime"}></AdvSearch></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  {/* <SpecificIngredients></SpecificIngredients> */}
+                  <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} ></IngrListSearch>
+                  {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
+                </div>
               </Pane>
               <Pane className='center' style={{ "height": "auto" }}>
-                <SearchBar setInput={setInput} input={input}></SearchBar>
-                <RecipeTable rows={rows} count={recipecount} ></RecipeTable>
+                <div>
+                  <SearchBar setInput={setInput} input={input}></SearchBar>
+                  <RecipeTable rows={rows} count={recipecount} ></RecipeTable>
+                </div>
               </Pane>
             </SplitPane>
           </div >
