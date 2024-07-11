@@ -10,7 +10,7 @@ function SearchBar({ setInput, input }) {
                 onChange={(e) => {
                     setInput(e.target.value);
                 }} />
-            <h2>Recipes: </h2>
+
         </div>
     )
 }

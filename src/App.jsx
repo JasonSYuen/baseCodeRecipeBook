@@ -32,24 +32,25 @@ function App() {
 
   function setThisIngredientList(add_or_remove, item, look_or_ignore) {
     if (add_or_remove == "add") {
-      let arr = searchThisIngredientList
+      //let arr = searchThisIngredientList
 
-      arr.push({ "item": item, "look_or_ignore": look_or_ignore })
-      setSearchThisIngredientList(arr)
+      //arr.push({ "item": item, "look_or_ignore": look_or_ignore })
+      //setSearchThisIngredientList(arr)
       console.log({ "item": item, "look_or_ignore": look_or_ignore })
-      //setSearchThisIngredientList(prevList => [...prevList, { item, look_or_ignore }]);
+      setSearchThisIngredientList(prevList => [...prevList, { item, look_or_ignore }]);
 
     }
     else {
-      let arr = searchThisIngredientList
-      arr.filter((word) => (word != item))
-      setSearchThisIngredientList(arr)
-      // setSearchThisIngredientList(prevList => prevList.filter(word => word.item !== item))
+      //let arr = searchThisIngredientList
+      //arr.filter((word) => (word != item))
+      //setSearchThisIngredientList(arr)
+      setSearchThisIngredientList(prevList => prevList.filter(word => word.item !== item))
     }
   }
 
   const [input, setInput] = useState("")
   const [rows, setRows] = useState([{ "id": 1, "name": "loading", "rating": "4" }])
+  const [recipecount, setRecipeCount] = useState("");
 
   // useEffect(() => {
   //   const fetchAPI = async () => {
@@ -72,8 +73,8 @@ function App() {
     const fetchAPI2 = async () => {
 
       let searchBarText = "@" + input
-      let ingrListInclude = "@" + ""
-      let ingrListExclude = "@" + ""
+      let ingrListInclude = "@"
+      let ingrListExclude = "@"
       let sortProtein = "@" + searchThisProtein
       let sortCarb = "@" + searchThisCarb
       let sortCookTime = "@" + searchThisCookTime
@@ -91,6 +92,7 @@ function App() {
         const response = await axios.get(getRequest)
         console.log(response)
         setRows(response.data)
+        setRecipeCount(Object.keys(response.data).length)
       }
       catch (e) { console.error(e); }
       console.log(searchBarText + " " + ingrListInclude + " " + ingrListExclude + " " + sortProtein + " " + sortCarb + " " + sortCookTime)
@@ -126,9 +128,9 @@ function App() {
                 <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} ></IngrListSearch>
                 {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
               </Pane>
-              <Pane className='center'>
+              <Pane className='center' style={{ "height": "auto" }}>
                 <SearchBar setInput={setInput} input={input}></SearchBar>
-                <RecipeTable rows={rows} ></RecipeTable>
+                <RecipeTable rows={rows} count={recipecount} ></RecipeTable>
               </Pane>
             </SplitPane>
           </div >

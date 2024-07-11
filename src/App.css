@@ -6,6 +6,7 @@
 .recipeTable {
     background-color: white;
     border: 4px solid black;
+    overflow: scroll;
 
     .recipeRow {
         background-color: lightblue;
