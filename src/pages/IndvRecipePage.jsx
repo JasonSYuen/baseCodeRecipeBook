@@ -68,8 +68,8 @@ function IndvRecipePage() {
             <h3 className="center">rating: <Rating name="read-only" value={5} readOnly /> </h3>
 
             {/*<p>{id}</p>*/}
-            <div>
-                <Item>
+            <div className='center' style={{ maxWidth: '700px' }}>
+                <Item >
                     <h3> CookTime: {input.TimeToPlate} min | Calories: {input.Calories} | Total Fat: {input.TotalFat}g | Saturated Fat: {input.SaturatedFat}g</h3>
                     <h3> Sodium: {input.Sodium}mg | Carbohydrates {input.TotalCarb}g | Fiber: {input.Fiber}g | Protein: {input.Protein}g </h3>
 
@@ -96,8 +96,8 @@ function IndvRecipePage() {
                                     <th><b>Quantity</b></th>
                                 </tr>
                                 {(input.ingredients)?.map((ingredient, index) => (
-                                    <tr key={index} className='bottomUnderlined'>
-                                        <td style={{ "textAlign": "left" }} >{ingredient}</td>
+                                    <tr key={index} className='bottomUnderlined' >
+                                        <td style={{ "textAlign": "left", maxWidth: '400px' }}>{ingredient}</td>
                                         <td style={{ "textAlign": "center" }}>{input.quantity[index]} {input.units[index]}</td>
                                     </tr>
                                 ))}
