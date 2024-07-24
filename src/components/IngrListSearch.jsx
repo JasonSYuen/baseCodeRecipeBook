@@ -19,16 +19,17 @@ function IngrListSearch({ list, func }) {
         }
     }
 
-    function test() {
+    function removeFromList(item) {
         return () => {
-            console.log("hello world")
+            console.log("remove")
+            func("remove", item)
         }
     }
 
 
     return (
         <div>
-            <h2> add ingredients you want to filter for here</h2>
+            <h2> Add ingredients you want to filter for here</h2>
             <p> + for recipes with the ingredient </p>
             <p> - for recipes without the ingredient </p>
             <TextField id="addIngr" value={text} onChange={(event) => { textFieldState(event.target.value) }}></TextField>
@@ -53,7 +54,7 @@ function IngrListSearch({ list, func }) {
                         <tr key={index}>
                             <td style={{ "backgroundColor": row.look_or_ignore }}>{row.item}</td>
                             <td className='trashIcon'>
-                                <IconButton onClick={test()}>
+                                <IconButton onClick={removeFromList(row.item)} value={row.item}>
                                     <DeleteIcon ></DeleteIcon>
                                 </IconButton>
 

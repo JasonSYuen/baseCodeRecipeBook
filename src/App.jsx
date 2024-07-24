@@ -134,7 +134,7 @@ function App() {
                   </tbody>
                 </table>
                 {/* <SpecificIngredients></SpecificIngredients> */}
-                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList} ></IngrListSearch>
+                <IngrListSearch list={searchThisIngredientList} func={setThisIngredientList}></IngrListSearch>
                 {/* {IngrListSearch(searchThisIngredientList, setThisIngredientList)} */}
               </div>
 
